@@ -1,44 +1,38 @@
-import java.util.Scanner;
+INÍCIO
 
-public class ControleAcesso {
-    public static void main(String[] args) {
+    // Lista oficial de alunos
+    listaOficial ← ["Lucas", "Mariana", "Pedro", "Ana", "João",
+                    "Carla", "Bruno", "Fernanda", "Rafael", "Juliana",
+                    "Gabriel", "Camila", "Felipe", "Larissa", "Diego",
+                    "Patrícia", "Rodrigo", "Beatriz", "Thiago", "Amanda"]
 
-        String[] listaOficial = {
-            "Lucas", "Mariana", "Pedro", "Ana", "João",
-            "Carla", "Bruno", "Fernanda", "Rafael", "Juliana",
-            "Gabriel", "Camila", "Felipe", "Larissa", "Diego",
-            "Patrícia", "Rodrigo", "Beatriz", "Thiago", "Amanda"
-        };
+    continuar ← "SIM"
 
-        Scanner scanner = new Scanner(System.in);
-        String continuar = "SIM";
+    ENQUANTO continuar = "SIM" FAÇA
 
-        while (continuar.equalsIgnoreCase("SIM")) {
+        ESCREVA "Digite o nome do aluno: "
+        LEIA nomeAluno
 
-            System.out.print("Digite o nome do aluno: ");
-            String nomeAluno = scanner.nextLine();
+        encontrado ← FALSO
 
-            boolean encontrado = false;
+        // Verificação na lista
+        PARA i ← 0 ATÉ tamanho(listaOficial) - 1 FAÇA
+            SE nomeAluno = listaOficial[i] (ignorando maiúsculas/minúsculas) ENTÃO
+                encontrado ← VERDADEIRO
+                PARE
+            FIMSE
+        FIMPARA
 
-            // Verificação na lista
-            for (int i = 0; i < listaOficial.length; i++) {
-                if (nomeAluno.equalsIgnoreCase(listaOficial[i])) {
-                    encontrado = true;
-                    break;
-                }
-            }
+        // Condicional
+        SE encontrado = VERDADEIRO ENTÃO
+            ESCREVA "Entrada permitida. Bem-vindo!"
+        SENÃO
+            ESCREVA "Erro: Nome não encontrado. Entrada negada."
+        FIMSE
 
-            // Condicional
-            if (encontrado) {
-                System.out.println("Entrada permitida. Bem-vindo!");
-            } else {
-                System.out.println("Erro: Nome não encontrado. Entrada negada.");
-            }
+        ESCREVA "Deseja verificar outro aluno? (SIM/NÃO): "
+        LEIA continuar
 
-            System.out.print("Deseja verificar outro aluno? (SIM/NÃO): ");
-            continuar = scanner.nextLine();
-        }
+    FIMENQUANTO
 
-        scanner.close();
-    }
-}
+FIM
